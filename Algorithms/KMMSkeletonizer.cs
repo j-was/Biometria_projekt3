@@ -166,7 +166,7 @@ public class KMMSkeletonizer : ISkeletonizer
             if (deleteSums.Contains(sum)) return true;
             return false;
         }
-        
+
         bool IsValue4(int x, int y)
         {
             int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
@@ -206,7 +206,7 @@ public class KMMSkeletonizer : ISkeletonizer
 
                     var candidate = (nx, ny);
 
-                    if (neighbors.Contains(candidate))
+                    if (neighbors.Contains(candidate) && !visited.Contains(candidate))
                     {
                         visited.Add(candidate);
                         queue.Enqueue(candidate);
