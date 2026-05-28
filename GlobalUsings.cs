@@ -1,0 +1,14 @@
+﻿global using Avalonia;
+global using Avalonia.Media.Imaging;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using System.Collections.ObjectModel;
+global using System;
+global using System.IO;
+global using Avalonia.Controls.ApplicationLifetimes;
+global using Avalonia.Markup.Xaml;
+global using Avalonia.Controls;
+global using Avalonia.Interactivity;
+global using Avalonia.Platform.Storage;
+global using System.Threading.Tasks;
+global using System.Collections.Generic;
+global using System.Linq;

@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:FingerprintDecryptor.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800" Height="500"
+        x:Class="FingerprintDecryptor.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Odszyfrowywator linii papilarnych">
+        
+        <Design.DataContext>
+                <vm:MainWindowViewModel/>
+        </Design.DataContext>
+        
+        <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="#1e1e1e" BorderBrush="#333333" BorderThickness="0,0,0,1">
+            <MenuItem Header="_Plik">
+                <MenuItem Header="_Wczytaj obraz..." Click="OpenFile_Click"/>
+                <Separator/>
+                <MenuItem Header="_Wyjdź" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Odszyfruj" Click="Decrypt_Click"/>
+            <MenuItem Header="_Algorytm szkieletyzacji">
+                    <MenuItem Header="_8-ścieżka" 
+                                 IsChecked="{Binding Is8NeighbourSelected}"
+                                 Click="_8Neighbour_Click"/>
+                    <MenuItem Header="_KMM" 
+                                 IsChecked="{Binding IsKMMSelected}"
+                                 Click="KMM_Click"/>
+                    <MenuItem Header="_K3M" 
+                              IsChecked="{Binding IsK3MSelected}"
+                              Click="K3M_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <ListBox DockPanel.Dock="Left" Width="160" Background="#181818"
+                 BorderBrush="#333333" BorderThickness="0,0,1,0"
+                 ItemsSource="{Binding Thumbnails}"
+                 SelectedIndex="{Binding SelectedIndex}"
+                 Padding="10">
+            <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0,0,0,10"/>
+                    <Setter Property="CornerRadius" Value="6"/>
+                </Style>
+            </ListBox.Styles>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#3d3d3d" BorderThickness="2" CornerRadius="6" ClipToBounds="True">
+                        <Image Source="{Binding}" Width="120" Height="120" Stretch="UniformToFill"/>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Border Padding="20">
+            <Image Source="{Binding MainImage}" Stretch="Uniform">
+                <Image.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Zapisz" Click="SaveImage_Click"/>
+                    </ContextMenu>
+                </Image.ContextMenu>
+            </Image>
+        </Border>
+    </DockPanel>
+        
+        
+</Window>
